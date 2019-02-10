@@ -1,0 +1,31 @@
+#!/usr/bin/env php
+
+<?php
+
+$autoloadPath1 = __DIR__ . '/../../../autoload.php';
+$autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
+if (file_exists($autoloadPath1)) {
+    require_once $autoloadPath1;
+} else {
+    require_once $autoloadPath2;
+}
+
+use Commando\Command;
+$cmd = new Command();
+
+$cmd->option('s')
+    ->aka('service')
+    ->require(false)
+    ->setHelp('--service metaweather or -- service oceandrivers')
+    ->describe('Weather service');
+
+$city = $cmd->getArgumentValues()[0] ?? '';
+$service = $cmd->getFlagValues()['s'] ?? '';
+
+$weather = new \Bezrukov\Weather\Weather($service);
+
+$weatherInfo = $weather->getWeatherFromCity($city);
+
+print_r($weatherInfo->getTemperature());
+
+
