@@ -2,17 +2,20 @@
 
 namespace Bezrukov\Weather\Services;
 
-use GuzzleHttp\Client;
-
 abstract class WeatherAbstract
 {
+    private $httpClient;
+
+    public function __construct($httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
     protected function request($baseUrl, $url ,$params)
     {
-        $client = new Client(['base_uri' => $baseUrl]);
-
-        $result = $client->request(
+        $result = $this->httpClient->request(
             'GET',
-            $url,
+            $baseUrl.$url,
             [
                 'query' => $params
             ]
