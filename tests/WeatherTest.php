@@ -3,6 +3,7 @@
 namespace Bezrukov\Weather\Tests;
 
 use Bezrukov\Weather\Services\WeatherServiceFactory;
+use Bezrukov\Weather\Weather;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -14,9 +15,12 @@ class WeatherTest extends TestCase
     public function testGetWeatherFromCity()
     {
         $client = $this->getHttpClientMock(200, '{"TEMPERATURE":"12.5"}');
+
         $service = WeatherServiceFactory::getWeatherService('oceandrivers', $client);
 
-        $this->assertEquals('12.5', $service->getWeatherFromCity('test')->getTemperature());
+        $weather = new Weather($service);
+
+        $this->assertEquals('12.5', $weather->getWeatherFromCity('test')->getTemperature());
     }
 
     /**

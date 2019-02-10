@@ -2,18 +2,17 @@
 
 namespace Bezrukov\Weather;
 
+use Bezrukov\Weather\Response\WeatherResponse;
 use Bezrukov\Weather\Services\WeatherInterface;
-use Bezrukov\Weather\Services\WeatherServiceFactory;
-use GuzzleHttp\Client;
 
 class Weather
 {
     /** @var WeatherInterface */
     private $weatherService;
 
-    public function __construct($service)
+    public function __construct(WeatherInterface $service)
     {
-        $this->weatherService = WeatherServiceFactory::getWeatherService($service, new Client());
+        $this->weatherService = $service;
     }
 
     public function getWeatherFromCity($city): WeatherResponse

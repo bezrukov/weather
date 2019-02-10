@@ -2,9 +2,9 @@
 
 namespace Bezrukov\Weather\Services;
 
-use Bezrukov\Weather\WeatherResponse;
+use Bezrukov\Weather\Response\WeatherResponse;
 
 interface WeatherInterface
 {
-    public function getWeatherFromCity(string $city):WeatherResponse;
+    public function getWeatherFromCity(string $city): WeatherResponse;
 }

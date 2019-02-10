@@ -7,21 +7,24 @@ use GuzzleHttp\Client;
 
 class WeatherServiceFactory
 {
+
+    private static $serviceList = [
+        'metaweather'  => MetaWeatherService::class,
+        'oceandrivers' => OceanDriversService::class,
+    ];
+
     /**
-     * @param string $service
+     * @param string $serviceName
      * @param Client $httpClient
      * @return WeatherInterface
      * @throws Exception
      */
-    public static function getWeatherService(string $service, $httpClient) :WeatherInterface
+    public static function getWeatherService(string $serviceName, $httpClient = null): WeatherInterface
     {
-        switch ($service) {
-            case 'metaweather':
-                return new MetaWeatherService($httpClient);
-            case 'oceandrivers':
-                return new OceanDriversService($httpClient);
-            default:
-                throw new Exception('we not match service');
+        if (!isset(self::$serviceList[$serviceName])) {
+            throw new Exception('we not match service');
         }
+
+        return new self::$serviceList[$serviceName]($httpClient);
     }
 }

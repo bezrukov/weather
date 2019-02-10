@@ -2,8 +2,8 @@
 
 namespace Bezrukov\Weather\Services;
 
-use Bezrukov\Weather\OceanDriversResponse;
-use Bezrukov\Weather\WeatherResponse;
+use Bezrukov\Weather\Response\OceanDriversResponse;
+use Bezrukov\Weather\Response\WeatherResponse;
 
 class OceanDriversService extends WeatherAbstract implements WeatherInterface
 {

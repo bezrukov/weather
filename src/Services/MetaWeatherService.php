@@ -2,8 +2,8 @@
 
 namespace Bezrukov\Weather\Services;
 
-use Bezrukov\Weather\MetaWeatherResponse;
-use Bezrukov\Weather\WeatherResponse;
+use Bezrukov\Weather\Response\MetaWeatherResponse;
+use Bezrukov\Weather\Response\WeatherResponse;
 
 class MetaWeatherService extends WeatherAbstract implements WeatherInterface
 {

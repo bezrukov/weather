@@ -22,10 +22,10 @@ $cmd->option('s')
 $city = $cmd->getArgumentValues()[0] ?? '';
 $service = $cmd->getFlagValues()['s'] ?? '';
 
-$weather = new \Bezrukov\Weather\Weather($service);
+$weatherService = \Bezrukov\Weather\Services\WeatherServiceFactory::getWeatherService($service);
+
+$weather = new \Bezrukov\Weather\Weather($weatherService);
 
 $weatherInfo = $weather->getWeatherFromCity($city);
 
 print_r($weatherInfo->getTemperature());
-
-

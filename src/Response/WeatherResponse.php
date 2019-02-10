@@ -1,6 +1,6 @@
 <?php
 
-namespace Bezrukov\Weather;
+namespace Bezrukov\Weather\Response;
 
 interface WeatherResponse
 {
